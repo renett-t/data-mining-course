@@ -26,14 +26,19 @@ class BloomFiler(object):
         print('m = %d' % self.m)
         print('k = %d' % self.k)
 
-    def _hash_djb2(self, s):
+    def _hash_djb2(self, string, k):
         hashRes = 5381
-        for x in s:
-            hashRes = ((hashRes << 5) + hashRes) + ord(x)
+        sim = 13
+        for x in string:
+            if k % 2 == 0:
+                hashRes = ((hashRes << 5) + hashRes) + ord(x) + k*sim + sim*self.m
+            else:
+                hashRes = ((hashRes << 5) + hashRes) + ord(x) + k*sim
+
         return hashRes % self.m
 
     def _hash(self, item, k):
-        return self._hash_djb2(str(k) + item)
+        return self._hash_djb2(str(k) + item, k)
 
     def add_to_filter(self, item):
         for i in range(self.k):
@@ -70,7 +75,7 @@ def read_file(file_name):
 if __name__ == '__main__':
     words_from_file = read_file("1984.txt")
 
-    p = 0.10
+    p = 0.90
     n = len(words_from_file)
     print(n)
 
@@ -80,7 +85,9 @@ if __name__ == '__main__':
         bloom_filter.add_to_filter(word)
     print(bloom_filter.bloom_filter)
 
-    words_to_check = ["ковид", "брат", "мыслепреступник", "пандемия", "картхолдер", "товарищ", "наградить", "немилость"]
+    words_to_check = ["ковид", "брат", "мыслепреступник", "пандемия", "картхолдер", "товарищ", "наградить", "немилость",
+                      "солнце", "деревья", "ответственность", "криптовалюта", "специальная", "операция", "это", "ложь",
+                      "свобода", "слова", "обман", "конституция", "бумажка", "зло", "добро", "добры", "вечность", "мир"]
 
     print("Проверим, НЕ содержатся ли слова в исходном тексте: ")
     for word in words_to_check:
@@ -88,25 +95,61 @@ if __name__ == '__main__':
 
     # false positive probability = 0.9, n = 74074
     # m = 16244, k = 1
-    # ковид -- False
-    # брат -- False
-    # мыслепреступник -- False
-    # пандемия -- False
-    # картхолдер -- True
-    # товарищ -- False
-    # наградить -- False
-    # немилость -- False
+    # ковид - - False
+    # брат - - False
+    # мыслепреступник - - False
+    # пандемия - - False
+    # картхолдер - - True
+    # товарищ - - False
+    # наградить - - False
+    # немилость - - False
+    # солнце - - False
+    # деревья - - False
+    # ответственность - - True
+    # криптовалюта - - False
+    # специальная - - False
+    # операция - - False
+    # это - - False
+    # ложь - - False
+    # свобода - - False
+    # слова - - False
+    # обман - - True
+    # конституция - - False
+    # бумажка - - False
+    # зло - - False
+    # добро - - False
+    # добры - - False
+    # вечность - - False
+    # мир - - False
 
     # false positive probability = 0.1, n = 74074
     # m = 355002, k = 4
-    # ковид -- True
-    # брат -- False
-    # мыслепреступник -- False
-    # пандемия -- True
-    # картхолдер -- True
-    # товарищ -- False
-    # наградить -- False
-    # немилость -- False
+    # ковид - - True
+    # брат - - False
+    # мыслепреступник - - False
+    # пандемия - - True
+    # картхолдер - - True
+    # товарищ - - False
+    # наградить - - False
+    # немилость - - False
+    # солнце - - False
+    # деревья - - False
+    # ответственность - - True
+    # криптовалюта - - True
+    # специальная - - True
+    # операция - - False
+    # это - - False
+    # ложь - - False
+    # свобода - - False
+    # слова - - False
+    # обман - - True
+    # конституция - - True
+    # бумажка - - False
+    # зло - - False
+    # добро - - True
+    # добры - - False
+    # вечность - - False
+    # мир - - False
 
 
 
