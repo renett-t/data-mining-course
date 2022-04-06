@@ -1,6 +1,6 @@
 # What's this?
 
-- Паук scrapy от Камиля, сяб <3
+- Паук scrapy
 сохранит всё в json, чтобы изменить глубину измени DEPTH_LIMIT, сам паук quotes_spider
 
 # How to use for the first time?

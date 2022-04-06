@@ -4,7 +4,7 @@ import scrapy
 class LinksSpider(scrapy.Spider):
     name = "links"
     start_urls = [
-        "https://google.com"
+        "https://greenpeace.ru/"
     ]
     custom_settings = {
         "DEPTH_LIMIT": 3
