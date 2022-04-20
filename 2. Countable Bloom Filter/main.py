@@ -7,9 +7,11 @@ def calculateNumberOfHashFunction(size, volume, probability):
     return int(math.ceil(size / volume * np.log(2)))
 
 
-#  m = - (n * ln(p)) / ln(2)^2
-def calculateBloomFilterLength(volume, probability):
-    return int(math.ceil(- volume * np.log(probability) / np.log(2) / np.log(2)))
+# from P(FP) = (1 - e^(-kn/m))^k and k = m / n * ln(2)
+def calculateBloomFilterLength(n, probability):
+    base = 1 - math.exp(- np.log(2) / n)
+    multiplier = n / np.log(2)
+    return int(math.log(probability, base) * multiplier)
 
 
 class BloomFiler(object):
@@ -68,18 +70,19 @@ def read_file(file_name):
                 words.append(w)
 
     file.close()
-    return words
+    return set(words)
 
 
 if __name__ == '__main__':
     words_from_file = read_file("grasshopper.txt")
 
-    p = 0.10                    # false positive probability
+    p = 0.10  # false positive probability
     n = len(words_from_file)
     print(n)
+    print(words_from_file)
 
     bloom_filter = BloomFiler(n, p)
 
     for word in words_from_file:
         bloom_filter.add_to_filter(word)
-    print(bloom_filter.bloom_filter)
+    print(f'Countable Bloom filter = {bloom_filter.bloom_filter}')
