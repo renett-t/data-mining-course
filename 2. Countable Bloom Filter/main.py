@@ -9,7 +9,7 @@ def calculateNumberOfHashFunction(size, volume, probability):
 
 # from P(FP) = (1 - e^(-kn/m))^k and k = m / n * ln(2)
 def calculateBloomFilterLength(n, probability):
-    base = 1 - math.exp(- np.log(2) / n)
+    base = 1 - math.exp(- np.log(2))
     multiplier = n / np.log(2)
     return int(math.log(probability, base) * multiplier)
 
