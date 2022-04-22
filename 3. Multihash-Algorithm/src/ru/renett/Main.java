@@ -49,8 +49,10 @@ public class Main {
                 resultSingletons.add(k);
             }
         }
+        Set<Doubleton> totalDoubleTones = new HashSet<>();
         for (Transaction transaction : transactions) {
             for (Doubleton d : transaction.getDoubletons()) {
+                totalDoubleTones.add(d);
                 if (!blockDoubletons1.contains(d) && !blockDoubletons2.contains(d)) {
                     if (!blockSingletones.contains(d.getI()) && !blockSingletones.contains(d.getJ())) {
                         resultDoubletons.add(d);
@@ -63,8 +65,10 @@ public class Main {
 //        writeResultToFile(resultSingletons, resultDoubletons);
         System.out.println(resultSingletons);
         System.out.println(resultDoubletons);
-        System.out.println("Singletons count = " + resultSingletons.size());
-        System.out.println("Doubletons count = " + resultDoubletons.size());
+        System.out.println("Total products count = " + items.size());
+        System.out.println("Total Doubletons count = " + totalDoubleTones.size());
+        System.out.println("Frequent Singletons count = " + resultSingletons.size());
+        System.out.println("Frequent Doubletons count = " + resultDoubletons.size());
     }
 
     private static void writeResultToFile(Set<Integer> resultSingletons, Set<Doubleton> resultDoubletons) throws IOException {
