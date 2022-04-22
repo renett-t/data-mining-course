@@ -8,6 +8,6 @@ public class HashTable2 extends HashTable {
 
     @Override
     public int calculate_hash(int i, int j) {
-        return (2 * i + 3 * j) % super.getK();
+        return (2 * i + 3 * j + i*j*j) % super.getK();
     }
 }

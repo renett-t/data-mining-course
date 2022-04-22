@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
-    public static String FILE_NAME = "/home/renett/Repositories/java/Multihash-Algorithm/Multihash-Algorithm/src/ru/renett/data/transactions.csv";
+    public static String FILE_NAME = "/home/renett/Repositories/python/data-mining-course/3. Multihash-Algorithm/src/ru/renett/data/transactions.csv";
 
     public static void main(String[] args) throws IOException {
         int supportThreshold = 3;

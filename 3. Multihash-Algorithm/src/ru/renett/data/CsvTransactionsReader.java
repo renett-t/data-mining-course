@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static ru.renett.Main.FILE_NAME;
 
 public class CsvTransactionsReader {
-    public static String PRODUCTS_FILE_NAME = "/home/renett/Repositories/java/Multihash-Algorithm/Multihash-Algorithm/src/ru/renett/data/products-mapping.csv";
+    public static String PRODUCTS_FILE_NAME = "/home/renett/Repositories/python/data-mining-course/3. Multihash-Algorithm/src/ru/renett/data/transactions.csv";
     public static String DELIMITER = ";";
 
     public static Box readTransactionsFromFile(String file) throws IOException {
@@ -56,7 +56,7 @@ public class CsvTransactionsReader {
             transactionsResult.add(new Transaction(items));
         }
 
-//        writeItemsMappings(itemsMapping);
+        writeItemsMappings(itemsMapping);
 
         Box box = new Box(new ArrayList<>(itemsMapping.values().stream().sorted().collect(Collectors.toList())),
                 transactionsResult);
