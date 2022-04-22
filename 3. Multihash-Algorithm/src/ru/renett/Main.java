@@ -60,9 +60,11 @@ public class Main {
         }
 
         System.out.println("\n RESULT: \n");
-        writeResultToFile(resultSingletons, resultDoubletons);
+//        writeResultToFile(resultSingletons, resultDoubletons);
         System.out.println(resultSingletons);
         System.out.println(resultDoubletons);
+        System.out.println("Singletons count = " + resultSingletons.size());
+        System.out.println("Doubletons count = " + resultDoubletons.size());
     }
 
     private static void writeResultToFile(Set<Integer> resultSingletons, Set<Doubleton> resultDoubletons) throws IOException {
