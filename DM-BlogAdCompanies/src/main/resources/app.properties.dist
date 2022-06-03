@@ -1,0 +1,7 @@
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://<host>:<port>/<db_name>
+db.username=<user>
+db.password=<password>
+db.max-pool-size=30
+youtube.api-key=<youtube-api-key>
+whois.api-key=<whois-api-key>
